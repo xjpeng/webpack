@@ -52,15 +52,7 @@ module.exports={
 		  {
 			test:/\.js$/,
 			exclude:/node_modules/,
-			use:{
-				loader:'babel-loader',
-				options:{
-					presets:['env'],
-					
-					//更多高级特性配置plugins
-					plugins:['syntax-dynamic-import','transform-es2015-template-literals']
-				}
-			}
+			loader:'babel-loader',
 		  }
 	   ]
 	   
