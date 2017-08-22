@@ -1,5 +1,5 @@
 # webpack3.5
-webpack3.5环境
+webpack3.5+vue2环境
 ## Build Setup
 建议使用yarn
 ``` bash
