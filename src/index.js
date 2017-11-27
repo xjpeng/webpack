@@ -1,4 +1,3 @@
-import printMe from './ba.js';
 import Vue from 'vue';
  
 function component() {
@@ -6,7 +5,12 @@ function component() {
 	var btn = document.createElement('button');
 	element.innerHTML  ='hello webpack';
 	btn.innerHTML = 'Click me and check the console';
-	btn.onclick = printMe;
+	btn.onclick = function(){
+		import('./ba.js').then(function(printMe){
+			console.log(printMe);
+			printMe.default();
+		});
+	};
     element.appendChild(btn);
     return element;
   }
