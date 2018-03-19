@@ -1,3 +1,6 @@
-export default function printMe(){
-  console.log(Date.now());
+let abc =1000;
+export default {
+  printMe(){
+	console.log(abc+'_'+Date.now());
+  }
 };

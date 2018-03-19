@@ -13,7 +13,14 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
  
 module.exports={
    entry:{
-	   main:'./src/index.js'
+	   main:'./src/index.js',
+	   /*
+	     打包第三方类库
+		 key自定义,比如下面使用vendor,你也可以使用其他名字
+		 value自定义,可以是单个字符串,或者数组,数组就是将多个文件打包到一个文件
+		 vendor:['vue','jquery'],
+		 vendor:'vue',
+	   */
    },
    output:{
       path:path.resolve(__dirname,'dist/'),
@@ -89,25 +96,23 @@ if(process.env.NODE_ENV==='production'){
 	//开发调试模式配置chunkhash会报错
 	module.exports.output.filename='js/[name].[chunkhash].js';
 	module.exports.output.chunkFilename='js/[name].[chunkhash].js';
-	module.exports.devtool='source-map';
-	module.exports.plugins = (module.exports.plugins||[]).concat([
+	module.exports.output.publicPath='';
+	module.exports.devtool= false;
+	module.exports.plugins = module.exports.plugins.concat([
 	
-	  //定义环境
-	  new webpack.DefinePlugin({
-       'process.env': {
-        NODE_ENV: '"production"'
-        }
-       }),
-	   //处理相同的异步加载模块到单独文件
-	   new webpack.optimize.CommonsChunkPlugin({async:'common'}),
 	   //处理运行时启动配置到单独文件
+	   /*
+         无设置vendor
+		 new webpack.optimize.CommonsChunkPlugin({name:'runtime'}),
+		 有设置vendor
+		 new webpack.optimize.CommonsChunkPlugin({
+			   names:['vendor','runtime']
+		  }),
+	   */
+
 	   new webpack.optimize.CommonsChunkPlugin({name:'runtime'}),
+	  
 	   //压缩js生产sourceMap
-	   new webpack.optimize.UglifyJsPlugin({
-		   sourceMap:true,
-		   compress:{
-			   warnings:false
-		   }
-	   })
+	   new webpack.optimize.UglifyJsPlugin()
 	]);
 }

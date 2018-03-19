@@ -1,4 +1,5 @@
 import Vue from 'vue';
+
  
 function component() {
     var element = document.createElement('div');
@@ -6,9 +7,9 @@ function component() {
 	element.innerHTML  ='hello webpack';
 	btn.innerHTML = 'Click me and check the console';
 	btn.onclick = function(){
-		import('./ba.js').then(function(printMe){
-			console.log(printMe);
-			printMe.default();
+		import(/* webpackChunkName: "my-chunk-name" */'./ba.js').then(function(obj){
+			console.log(obj);
+			obj.default.printMe();
 		});
 	};
     element.appendChild(btn);
