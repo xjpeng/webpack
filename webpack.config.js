@@ -79,12 +79,6 @@ module.exports={
 		  template:'./src/template.html'
 	  })
    ],
-   //配置模块路径
-   resolve: {
-      alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-      }
-    },
 	//开发调试服务器
    devServer:{
 	   historyApiFallback:true,
